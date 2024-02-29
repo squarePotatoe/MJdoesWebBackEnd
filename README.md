@@ -1,0 +1,3 @@
+This is the backend portion of my website: MJdoesCode. More on the project visit the frontEnd section: https://github.com/squarePotatoe/MJdoesWebFrontEnd
+
+More about the backend coming soon...
