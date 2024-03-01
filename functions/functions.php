@@ -133,6 +133,22 @@ function retrieve_drafts_by_author(PDO $pdo, $author) {
   );
 }
 
+function update_article_visit_count(object $pdo, int $id){
+  $query = "UPDATE posts SET view_count = view_count + 1 WHERE id = :id";
+  $stmt = $pdo->prepare($query);
+  $stmt->bindParam(":id", $id);
+  $stmt->execute();
+}
+
+function get_project_by_id($pdo, $id){
+  $query = "SELECT * FROM projects WHERE id = :id";
+  $stmt = $pdo->prepare($query);
+  $stmt->bindParam(":id", $id);
+  $stmt->execute();
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+  return $result;
+}
+
 function get_posts_json(object $pdo) {
 
   $query = "SELECT * FROM posts";
@@ -143,3 +159,5 @@ function get_posts_json(object $pdo) {
 
   return json_encode($result, JSON_PRETTY_PRINT);
 }
+
+

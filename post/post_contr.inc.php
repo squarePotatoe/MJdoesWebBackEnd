@@ -36,3 +36,7 @@ function save_draft(object $pdo, string $headline, string $subtitle, string $con
 function update_posts(object $pdo, int $id, string $headline, string $subtitle, string $content) {
     update_post($pdo, $id, $headline, $subtitle, $content);
 }
+
+function update_article_visit_count(object $pdo, int $id){
+    update_article_visit_count($pdo, $id);
+}
