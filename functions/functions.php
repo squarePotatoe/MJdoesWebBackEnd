@@ -11,8 +11,30 @@ function retrieve_posts(PDO $pdo) {
   $row = $stmt->fetch(PDO::FETCH_ASSOC);
   $totalPages = ceil($row["total"] / $resultsPerPage);
 
-  $query = "SELECT id, header, subtitle, content, category, author, DATE_FORMAT(date, '%M %d %Y %h:%i %p')
-   AS date FROM posts ORDER BY id DESC LIMIT $startFrom, $resultsPerPage" ;
+  $query = "SELECT * FROM posts ORDER BY id DESC LIMIT $startFrom, $resultsPerPage" ;
+  $stmt = $pdo->prepare($query);
+  $stmt->execute();
+  $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+  return array (
+      'result' => $rows,
+      'totalPages'=> $totalPages,
+      'currentPage'=> $page
+  );
+}
+
+function retrieve_posts_admin(PDO $pdo) {
+  $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+  $resultsPerPage = 10;
+  $startFrom = ($page -1) * $resultsPerPage;
+
+  $query = "SELECT COUNT(*) AS total FROM posts";
+  $stmt = $pdo->prepare($query);
+  $stmt->execute();
+  $row = $stmt->fetch(PDO::FETCH_ASSOC);
+  $totalPages = ceil($row["total"] / $resultsPerPage);
+
+  $query = "SELECT * FROM posts ORDER BY id DESC LIMIT $startFrom, $resultsPerPage" ;
   $stmt = $pdo->prepare($query);
   $stmt->execute();
   $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -35,8 +57,7 @@ function retrieve_posts_by_category(PDO $pdo, $category) {
   $row = $stmt->fetch(PDO::FETCH_ASSOC);
   $totalPages = ceil($row["total"] / $resultsPerPage);
 
-  $query = "SELECT id, header, subtitle, content, category, author, DATE_FORMAT(date, '%M %d %Y %h:%i %p')
-   AS date FROM posts WHERE category = '$category' ORDER BY id DESC LIMIT $startFrom, $resultsPerPage" ;
+  $query = "SELECT * FROM posts WHERE category = '$category' ORDER BY id DESC LIMIT $startFrom, $resultsPerPage" ;
   $stmt = $pdo->prepare($query);
   $stmt->execute();
   $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
