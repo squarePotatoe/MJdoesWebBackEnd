@@ -22,17 +22,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = get_user($pdo, $username);
 
         if (is_username_wrong($result)) {
-            $errors["login_incorrect"] = "Incorrect login info!";
+            $errors["login_incorrect"] = "Incorrect login information!";
         }
 
         if (!is_username_wrong($result) && is_password_wrong($pwd, $result["pwd"])) {
-            $errors["login_incorrect"] = "Incorrect login info!";
+            $errors["login_incorrect"] = "Incorrect login information!";
         }
 
         require_once 'C:\xampp8.2\htdocs\project\includes\config_session.inc.php';
 
         if($errors) {
             $_SESSION["errors_login"] = $errors;
+
+            $loginData = [
+                "username"=> $username
+            ];
+
+            $_SESSION["login_data"] = $loginData;
 
             header("Location: ../../public_html/login");
             die();

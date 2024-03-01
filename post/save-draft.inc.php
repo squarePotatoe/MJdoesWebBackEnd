@@ -13,25 +13,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // ERROR HANDLER
 
-        // $errors = [];
+        $errors = [];
 
-        // if(is_headline_empty($headline)) {
-        //     $errors["empty_headline"] = 'Invalid Headline!';
-        // }
+        if(is_headline_empty($headline)) {
+            $errors["empty_headline"] = 'Invalid Headline!';
+        }
 
 
-        // if(is_content_empty($content)) {
-        //     $errors["empty_content"] = 'Invalid Content!';
-        // }
+        if(is_content_empty($content)) {
+            $errors["empty_content"] = 'Invalid Content!';
+        }
 
         require_once 'C:\xampp8.2\htdocs\project\includes\config_session.inc.php';
 
-        // if($errors) {
-        //     $_SESSION["errors_post"] = $errors;
+        if($errors) {
+            $_SESSION["errors_post"] = $errors;
 
-        //     header("Location: ../../public_html/compose");
-        //     die();
-        // }
+            header("Location: ../../public_html/compose");
+            die();
+        }
         $author = $_SESSION["user_username"];
 
         $_SESSION["posts_header"] = htmlspecialchars($headline);

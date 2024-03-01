@@ -15,7 +15,8 @@ function check_login_errors() {
         echo "<br>";
 
         foreach ($errors as $error) {
-            echo '<p class="error-message">' . $error .'</p>';
+            
+            echo '<p style="color: #c83e3e;" class="error-message mx-auto text-decoration-underline justify-content-center">' . $error .'</p>';
         }
 
         unset($_SESSION["errors_login"]);
