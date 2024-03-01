@@ -99,8 +99,7 @@ function retrieve_post_by_featured($pdo) {
 }
 
 function retrieve_recent_posts(PDO $pdo) {
-  $query = "SELECT id, header, subtitle, content, category, author, DATE_FORMAT(date, '%M %d %Y %h:%i %p')
-   AS date FROM posts ORDER BY id DESC LIMIT 3" ;
+  $query = "SELECT * FROM posts ORDER BY id DESC LIMIT 3" ;
   $stmt = $pdo->prepare($query);
   $stmt->execute();
   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
