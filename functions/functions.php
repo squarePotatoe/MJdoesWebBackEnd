@@ -60,7 +60,7 @@ function retrieve_latest_post_by_category($pdo, $category) {
 function retrieve_posts_by_author(PDO $pdo, $author) {
 
   $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-  $resultsPerPage = 3;
+  $resultsPerPage = 5;
   $startFrom = ($page -1) * $resultsPerPage;
 
   $query = "SELECT COUNT(*) AS total FROM posts WHERE author = '$author'";
@@ -69,8 +69,7 @@ function retrieve_posts_by_author(PDO $pdo, $author) {
   $row = $stmt->fetch(PDO::FETCH_ASSOC);
   $totalPages = ceil($row["total"] / $resultsPerPage);
 
-  $query = "SELECT id, header, subtitle, content, category, author, DATE_FORMAT(date, '%M %d %Y %h:%i %p')
-   AS date FROM posts WHERE author = '$author' ORDER BY id DESC LIMIT $startFrom, $resultsPerPage" ;
+  $query = "SELECT * FROM posts WHERE author = '$author' ORDER BY id DESC LIMIT $startFrom, $resultsPerPage" ;
   $stmt = $pdo->prepare($query);
   $stmt->execute();
   $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -111,7 +110,7 @@ function retrieve_recent_posts(PDO $pdo) {
 function retrieve_drafts_by_author(PDO $pdo, $author) {
 
   $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-  $resultsPerPage = 3;
+  $resultsPerPage = 5;
   $startFrom = ($page -1) * $resultsPerPage;
 
   $query = "SELECT COUNT(*) AS total FROM drafts WHERE author = '$author'";
