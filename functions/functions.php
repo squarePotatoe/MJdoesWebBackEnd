@@ -159,6 +159,14 @@ function update_article_visit_count(object $pdo, int $id){
   $stmt->execute();
 }
 
+function get_projects($pdo) {
+  $query = "SELECT * FROM projects";
+  $stmt = $pdo->prepare($query);
+  $stmt->execute();
+  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  return $result;
+}
+
 function get_project_by_id($pdo, $id){
   $query = "SELECT * FROM projects WHERE id = :id";
   $stmt = $pdo->prepare($query);
@@ -167,6 +175,7 @@ function get_project_by_id($pdo, $id){
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
   return $result;
 }
+
 
 function get_posts_json(object $pdo) {
 
