@@ -4,7 +4,7 @@ $id = $_GET['id'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
-        require_once('C:\xampp8.2\htdocs\new-project\includes\dbh.inc.php');
+        require_once 'C:\xampp8.2\htdocs\MJSD-Lauch\MJdoesCode\includes\dbh.inc.php';
 
         $query = "DELETE FROM posts WHERE id = $id";
         $stmt = $pdo->prepare($query);

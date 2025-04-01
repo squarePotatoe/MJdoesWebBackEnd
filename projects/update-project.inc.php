@@ -2,18 +2,32 @@
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_GET['id'];
-    $header = $_POST['header'];
-    $subtitle = $_POST['subtitle'];
-    $content = $_POST['content'];
+    $title = $_POST['title'];
+    $description = $_POST['description'];
     try {
         require_once 'C:\xampp8.2\htdocs\MJSD-Lauch\MJdoesCode\includes\dbh.inc.php';
 
-        $query = "UPDATE posts SET header = :header, subtitle = :subtitle, content = :content WHERE id = :id";
+        $query = "UPDATE projects SET title = :title, description = :description, image_path = :imagePath WHERE id = :id";
         $stmt = $pdo->prepare($query);
+        
+        $targetFolder = '../../uploads/';
 
-        $stmt->bindParam(":header", $header);
-        $stmt->bindParam(":subtitle", $subtitle);
-        $stmt->bindParam(":content", $content);
+        $uploadFile = $_FILES['image']['tmp_name'];
+
+        $targetFile = $targetFolder . basename($_FILES['image']['name']);
+
+        if (move_uploaded_file($uploadFile, $targetFile)) {
+            echo 'Uploaded';
+        } else {
+            die();
+        }
+
+        $imagePath = '../uploads/' . basename($_FILES['image']['name']);
+
+
+        $stmt->bindParam(":title", $title);
+        $stmt->bindParam(":description", $description);
+        $stmt->bindParam(":image_path", $imagePath);
         $stmt->bindParam(":id", $id);
 
         $stmt->execute();

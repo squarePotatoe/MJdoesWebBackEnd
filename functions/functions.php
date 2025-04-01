@@ -188,4 +188,13 @@ function get_posts_json(object $pdo) {
   return json_encode($result, JSON_PRETTY_PRINT);
 }
 
+function get_post_by_id_json(object $pdo, int $id) {
+  $query = "SELECT * FROM projects WHERE id = :id";
+  $stmt = $pdo->prepare($query);
+  $stmt->bindParam(":id", $id);
+  $stmt->execute();
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+  return json_encode($result, JSON_PRETTY_PRINT);
+}
+
 

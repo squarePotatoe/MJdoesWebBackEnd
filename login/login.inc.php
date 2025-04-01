@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         
-        require_once('C:\xampp8.2\htdocs\new-project\includes\dbh.inc.php');
+        require_once 'C:\xampp8.2\htdocs\MJSD-Lauch\MJdoesCode\includes\dbh.inc.php';
         require_once 'login_model.inc.php';
         require_once 'login_contr.inc.php';
 
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $errors["login_incorrect"] = "Incorrect login information!";
         }
 
-        require_once 'C:\xampp8.2\htdocs\project\includes\config_session.inc.php';
+        require_once 'C:\xampp8.2\htdocs\MJSD-Lauch\MJdoesCode\includes\config_session.inc.php';
 
         if($errors) {
             $_SESSION["errors_login"] = $errors;

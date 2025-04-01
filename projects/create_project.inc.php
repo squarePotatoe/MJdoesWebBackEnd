@@ -5,9 +5,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $description = $_POST['description'];
 
     try {
-        require_once ('C:\xampp8.2\htdocs\project\includes\dbh.inc.php');
-        require_once ('project_model.inc.php');
-        require_once ('project_contr.inc.php');
+        require_once 'C:\xampp8.2\htdocs\MJSD-Lauch\MJdoesCode\includes\dbh.inc.php';
+        require_once 'project_model.inc.php';
+        require_once 'project_contr.inc.php';
 
         // ERROR HANDLER
 
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $errors["empty_title"] = "Title can not be empty!";
         }
 
-        require_once 'C:\xampp8.2\htdocs\project\includes\config_session.inc.php';
+        require_once 'C:\xampp8.2\htdocs\MJSD-Lauch\MJdoesCode\includes\config_session.inc.php';
 
         if ($errors) {
             $_SESSION["errors_project"] = $errors;

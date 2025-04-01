@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     try {
 
-        require_once ('C:\xampp8.2\htdocs\project\includes\dbh.inc.php');
+        require_once 'C:\xampp8.2\htdocs\MJSD-Lauch\MJdoesCode\includes\dbh.inc.php';
         require_once 'signup_model.inc.php';
         require_once 'signup_contr.inc.php';
 
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $errors["email_used"] = "Email already registered!";
         }
 
-        require_once 'C:\xampp8.2\htdocs\project\includes\config_session.inc.php';
+        require_once 'C:\xampp8.2\htdocs\MJSD-Lauch\MJdoesCode\includes\config_session.inc.php';
 
         if($errors) {
             $_SESSION["errors_signup"] = $errors;

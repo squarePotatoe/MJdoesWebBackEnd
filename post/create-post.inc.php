@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $category = $_POST['category'];
 
     try {
-        require_once ('C:\xampp8.2\htdocs\project\includes\dbh.inc.php');
+        require_once 'C:\xampp8.2\htdocs\MJSD-Lauch\MJdoesCode\includes\dbh.inc.php';
         require_once ('post_model.inc.php');
         require_once ('post_contr.inc.php');
 
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $errors["empty_content"] = 'Invalid Content!';
         }
 
-        require_once 'C:\xampp8.2\htdocs\project\includes\config_session.inc.php';
+        require_once 'C:\xampp8.2\htdocs\MJSD-Lauch\MJdoesCode\includes\config_session.inc.php';
 
         if($errors) {
             $_SESSION["errors_post"] = $errors;

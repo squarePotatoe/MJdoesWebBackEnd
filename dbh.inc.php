@@ -1,7 +1,7 @@
 <?php
 
 $host = "localhost";
-$dbname = "test";
+$dbname = "mjdoesco_blog";
 $dbusername = "root";
 $dbpassword = "";
 

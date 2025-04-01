@@ -19,7 +19,7 @@ if (isset($_SESSION['user_id'])) {
     if (!isset($_SESSION['last_regeneration'])) {
         regenerate_session_id_loggedin();
     } else {
-        $interval = 60 * 30;
+        $interval = 60 * 60;
         if (time() - $_SESSION['last_regeneration'] >= $interval) {
             regenerate_session_id_loggedin();
         }
